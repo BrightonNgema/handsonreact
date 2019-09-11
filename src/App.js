@@ -5,6 +5,7 @@ import About from './components/about';
 import Contact from './components/contact';
 import Navbar from './components/navbar';
 import Book from './components/book';
+import MyMap from './components/mymap';
 
 class App extends React.Component {
   render(){
@@ -16,7 +17,7 @@ class App extends React.Component {
           <Route path='/about' component={About} />
           <Route path='/about/:book_id' component={Book} />
           <Route path='/contact' component={Contact} />
-          
+          <Route path='/mymap' component={MyMap} />
         </div>
       </BrowserRouter>
       
