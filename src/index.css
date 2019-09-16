@@ -19,3 +19,13 @@ code {
   transform : translate(-50, -50);
 
 }
+
+span{
+  width: 50px;
+  height: 100px;
+  border: 1px solid red;
+  border-radius: 5px;
+  word-wrap: wrap; 
+  overflow: hidden;
+  padding: 2px;
+}

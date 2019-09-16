@@ -5,6 +5,7 @@ import Pin from './pin';
 import axios from 'axios';
 
 const ACCESS_TOKEN = "pk.eyJ1Ijoic2hyYXZhbmlyb3kiLCJhIjoiY2swNmtyeTI3MDI4ZzNwbHZjeXV6cGtkYyJ9.WaVp-OCmQvE53OrHWcwZqg";
+const MAPBOX_API_URL = "https://api.mapbox.com/geocoding/v5/mapbox.places/";
 class MyMap extends React.Component {
     constructor(props) {
         super(props);
@@ -25,18 +26,10 @@ class MyMap extends React.Component {
 
         };
         this._suggestionSelect = this._suggestionSelect.bind(this);
-        this.setPinToCity = this.setPinToCity.bind(this);
-    }
-
-    componentDidMount(){
         
-        let { Cityname } = this.props;    
-        if(Cityname){
-            this.setPinToCity(Cityname);
-        }
-        //pass the selected city as text to setPinToCity
-
     }
+
+    
 
     _suggestionSelect(result, lat, lang, text) {
         let { viewport } = this.state;
@@ -92,33 +85,33 @@ class MyMap extends React.Component {
                 latitude: event.lngLat[1],
             }
         })
-        // this.updateAddressBar(event.lngLat[0], event.lngLat[1]);
+        this.updateAddressBar(event.lngLat[0], event.lngLat[1]);
         
     }
 
-    // async updateAddressBar(lng, lat){
-    //     let Address = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+lng+','+lat+'.json?access_token='+ACCESS_TOKEN);
-    //     //the above service call returns place close to the coordinates passed.
-    //     alert( Address.data.features[0].place_name);
-    // }
-
-   async setPinToCity(value){
-   
-        // let value = value;
-        
-        let locateAddress = await axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/'+value+'.json?access_token='+ACCESS_TOKEN);
-        //the above service call returns coordinates.
-        console.log(locateAddress);
-        let lng = locateAddress.data.features[0].center[0];
-        let lat = locateAddress.data.features[0].center[1];
-        console.log(lng,lat);
+    async updateAddressBar(lng, lat){
+        let Address = await axios.get(MAPBOX_API_URL+lng+','+lat+'.json?access_token='+ACCESS_TOKEN);
+        //the above service call returns place close to the coordinates passed.
         this.setState({
-            marker: {
-                longitude: parseFloat(lng),
-                latitude: parseFloat(lat)
-            }
+            locationselected: Address.data.features[0].place_name
         })
+        // alert(Address.data.features[0].place_name);
     }
+
+//    async setPinToCity(value){      
+//         let locateAddress = await axios.get(MAPBOX_API_URL+value+'.json?access_token='+ACCESS_TOKEN);
+//         //the above service call returns coordinates.
+//         console.log(locateAddress);
+//         let lng = locateAddress.data.features[0].center[0];
+//         let lat = locateAddress.data.features[0].center[1];
+//         console.log(lng,lat);
+//         this.setState({
+//             marker: {
+//                 longitude: parseFloat(lng),
+//                 latitude: parseFloat(lat)
+//             }
+//         })
+//     }
 
     render() {
         // const {locationselected} = this.state;
@@ -155,6 +148,7 @@ class MyMap extends React.Component {
                                     draggable={true}
                                     >
                                 <Pin />
+                                <span>{this.state.locationselected}</span>
                             </Marker>
                         </ReactMapGL>
                         
