@@ -1,5 +1,5 @@
 import React from 'react';
-import { isPureish } from '@babel/types';
+
 
 export default class Pin extends React.Component{
     render(){

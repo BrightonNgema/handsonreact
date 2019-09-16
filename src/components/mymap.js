@@ -121,15 +121,15 @@ class MyMap extends React.Component {
     }
 
     render() {
-        const {locationselected} = this.state;
+        // const {locationselected} = this.state;
         
                 return (
-            <div className="col-md-6 col-12 fixaddress">
-                <div className="fixaddress-wrap">
-                    <div className="fixaddress-wrap-head"><p>Fix Address</p></div>
-                    <div className="fixaddress-wrap-main">
+            <div className="col-md-6 col-12 map-center">
+                
+                    
+                    
                         <div className="input-group">
-                            <label>Location Address</label>
+                            
                             {/* <Geocoder accessToken="pk.eyJ1IjoiYW5lZWxrYXVzaGlrIiwiYSI6ImNqeHdzdWJmNDA1eHQzY3BqdjF2NjQ2cngifQ.TibZtO9WqWAJvx9PiTukLg" /> */}
                             {/* <input type="text" placeholder="Type your address" value={locationselected} name="textAddress" onChange={this.handleAddressInput.bind(this)} /> */}
                             <MapboxAutocomplete publicKey={ACCESS_TOKEN}
@@ -161,9 +161,9 @@ class MyMap extends React.Component {
                         <p>
                             Please fill in or place the pin on the map to the exact location of your delivery. Like godown or warehouse.
                         </p>
-                    </div>
+                    
                 </div>
-            </div>
+            
         );
     }
 }
