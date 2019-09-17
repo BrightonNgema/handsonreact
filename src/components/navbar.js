@@ -7,9 +7,10 @@ function Navbar(){
             <div className="container">
             
                 <ul className="right">
-                    <li><Link to='/home'>Home</Link></li>
+                    {/* <li><Link to='/home'>Home</Link></li>
                     <li><Link to='/about'>About</Link></li>
-                    <li><Link to='/contact'>Contact</Link></li>
+                    <li><Link to='/contact'>Contact</Link></li> */}
+                    <li><Link to='/mymap'>Mymap</Link></li>
                 </ul>
             </div>
 

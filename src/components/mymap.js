@@ -148,7 +148,7 @@ class MyMap extends React.Component {
                                     draggable={true}
                                     >
                                 <Pin />
-                                <span>{this.state.locationselected}</span>
+                                <span className="popup">{this.state.locationselected}</span>
                             </Marker>
                         </ReactMapGL>
                         

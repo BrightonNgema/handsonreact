@@ -20,7 +20,7 @@ code {
 
 }
 
-span{
+.popup{
   width: 50px;
   height: 100px;
   border: 1px solid red;
