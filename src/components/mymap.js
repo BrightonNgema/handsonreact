@@ -90,12 +90,14 @@ class MyMap extends React.Component {
     }
 
     async updateAddressBar(lng, lat){
-        let Address = await axios.get(MAPBOX_API_URL+lng+','+lat+'.json?access_token='+ACCESS_TOKEN);
+        let slng = parseFloat(lng);
+        let slat = parseFloat(lat);
+        let Address = await axios.get(MAPBOX_API_URL+slng+','+slat+'.json?types=postcode&access_token='+ACCESS_TOKEN);
         //the above service call returns place close to the coordinates passed.
-        this.setState({
-            locationselected: Address.data.features[0].place_name
-        })
-        // alert(Address.data.features[0].place_name);
+        // this.setState({
+        //     locationselected: Address.data.features[0].place_name
+        // })
+        console.log(Address);
     }
 
 //    async setPinToCity(value){      
