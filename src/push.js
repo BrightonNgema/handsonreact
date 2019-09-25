@@ -12,6 +12,7 @@ const config = {
 export const initializeFirebase = () => {
   firebase.initializeApp(config);
   seekPermission();
+  getmsgs();
 }
 
 export const seekPermission = async () => {
@@ -26,11 +27,14 @@ export const seekPermission = async () => {
     .catch(function(err){
         console.log('Error occured');
     })
-
-
-messaging.onMessage((payload) => {
-    console.log('Message received. ', payload);
-    // ...
-  });
-
 }
+
+export const getmsgs = () => {
+    const messaging = firebase.messaging();
+    messaging.onMessage((payload) => {
+        console.log('Message received. ', payload);
+        // ...
+      });
+}
+
+
